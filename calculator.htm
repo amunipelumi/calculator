@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator J</title>
+</head>
+<body>
+  <!-- The calculation interface -->
+  <p class="js-calculation"></p>
+  <!-- The calculator interface -->
+  <p>
+    <button onclick="updateCalculation('1');">1</button>
+    <button onclick="updateCalculation('2');">2</button>
+    <button onclick="updateCalculation('3');">3</button>
+    <button onclick="updateCalculation(' + ');">+</button>
+  </p>
+  <p>
+    <button onclick="updateCalculation('4');">4</button>
+    <button onclick="updateCalculation('5');">5</button>
+    <button onclick="updateCalculation('6');">6</button>
+    <button onclick="updateCalculation(' - ');">-</button>
+  </p>
+  <p>
+    <button onclick="updateCalculation('7');">7</button>
+    <button onclick="updateCalculation('8');">8</button>
+    <button onclick="updateCalculation('9');">9</button>
+    <button onclick="updateCalculation(' * ');">*</button>
+  </p>
+  <p>
+    <button onclick="updateCalculation('.');">.</button>
+    <button onclick="updateCalculation('0');">0</button>
+    <button onclick="computeResult();">=</button>
+    <button onclick="updateCalculation(' / ');">/</button>
+  </p>
+  <p>
+    <button onclick="clearCalculation();">Clear</button>
+  </p>
+  <script>
+    // 
+    let calculation = localStorage.getItem('calculation') || '';
+    const jsCal = document.querySelector('.js-calculation');
+
+    // Display calculation on page
+    function displayCalculation(){
+      jsCal.innerHTML = calculation;
+      localStorage.setItem('calculation', calculation);
+    }
+    displayCalculation();
+
+    // Concat and display calculation
+    function updateCalculation(value){
+      calculation += value;
+      displayCalculation();
+    }
+
+    // Compute result and display
+    function computeResult(){
+      calculation = eval(calculation);
+      displayCalculation();
+    }
+
+    // Clear calculation
+    function clearCalculation(){
+      calculation = '';
+      displayCalculation();
+    }
+    // 
+  </script>
+</body>
+</html>
